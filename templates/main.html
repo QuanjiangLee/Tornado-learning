@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>hello</title>
+    <link rel="stylesheet" href="{{ static_url("style.css") }}" />
+</head>
+<body>
+    <div id="container">
+            {% block head %}<h1>Burt's Books</h1>{% end %}
+        <div id="main">
+            <div id="content">
+                {% block body %}{% end %}
+            </div>
+        </div>
+            {% block footer %}
+                <p>
+    For more information about our selection, hours or events, please email us at
+    <a href="mailto:contact@burtsbooks.com">contact@burtsbooks.com</a>.
+                </p>
+            {% end %}
+    </div>
+    <!--<script src="{{ static_url("js/script.js") }}"></script>-->
+    </body>
+</html>
