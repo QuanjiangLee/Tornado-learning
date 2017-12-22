@@ -46,17 +46,18 @@ tornado.options.parse_command_line()
 2. Poem Maker pro
 
 多个路由使用：
+```
 app = tornado.web.Application(  #settings
         handlers=[(r'/', IndexHandler), (r'/poem', PoemPageHandler)], # handlers a tuple for url routes
         template_path=os.path.join(os.path.dirname(__file__), "templates")  # templates_path dir
     )
-
+```
 templates 模版语法竟然和django, Flask语法差不多！
 *不同的是Tornado使用{% end %} 来结束if,for，而django和flask则需要{% end if %}, {% endfor %}来结束
-
+```
 static_url:
 <link rel="stylesheet" href="{{ static_url("style.css") }}">  <!-- 静态文件地址 -->
-
+```
 url_escape(s) #将字符串s 替换成url编码形式
 squeeze(s) 将连续多个空白字符替换成一个空格
 
@@ -71,15 +72,12 @@ squeeze(s) 将连续多个空白字符替换成一个空格
 {% end %}
 
 {% extends "main.html" %}
-
 {% block header %}
     <h1>{{ header_text }}</h1>
 {% end %}
-
 {% block body %}
     <p>Hello from the child template!</p>
 {% end %}
-
 {% block footer %}   
     <p>{{ footer_text }}</p>
 {% end %}
@@ -105,6 +103,7 @@ locale.format_date()它调用了tornado.locale模块提供的日期处理方法�
 
 Tornado tornado.web.UIModule类：
 自定义UI模块(样例)：
+```
 class BookModule(tornado.web.UIModule):
     def render(self, book):
         return self.render_string(
@@ -116,4 +115,5 @@ class BookModule(tornado.web.UIModule):
         return "document.write(\"hi!\")"  # 会生成<javascrpt></javascript>标签包含js代码
 def javascript_files(self):
     return "/static/index.js" 
+```
 html_body()、javascript_files()和embedded_javascript()都会将内容渲染后插到页面底部，那么它们出现的顺序正好是你指定它们的顺序的倒序。
